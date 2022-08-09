@@ -132,3 +132,29 @@ body {
 .spacer-top {
   padding-top: 10rem;
 }
+
+
+
+
+
+.particle-network-animation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+  z-index: -2;
+  
+  &::before {
+    z-index: -2;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.2;
+  }
+}
