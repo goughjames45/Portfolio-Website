@@ -20,7 +20,24 @@
         this.ctx.globalCompositeOperation = 'destination-over';
 		this.particleNetwork = new ParticleNetwork(this);
 
+        this.bindUiActions();
+
 		return this;
+	};
+
+    PNA.prototype.bindUiActions = function() {
+		$(window).on('resizeEnd', function() {
+			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.sizeCanvas();
+			this.particleNetwork.createParticles();
+		}.bind(this));
+
+        $(window).resize(function() {
+            if(this.resizeTO) clearTimeout(this.resizeTO);
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger('resizeEnd');
+            }, 500);
+        });
 	};
 
 	PNA.prototype.sizeCanvas = function() {
